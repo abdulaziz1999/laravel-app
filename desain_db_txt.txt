@@ -1,0 +1,92 @@
+---------
+tbl_users
+----------
+id              int
+nama            varchar(30)
+jk              enum("L", "P")
+email           varchar(30)
+username        varchar(30)
+password        varchar(255)
+role_id         int
+
+
+---------
+tbl_roles
+----------
+id              int
+nama            varchar(30)
+
+
+-----------
+tbl_pegawai
+------------
+id              int
+nik             bigint
+nama            varchar(30)
+email           varchar(30)
+no_telp         int
+jk              enum("L","P")
+tgl_lahir       date
+tmpt_lahir      varchar(20)
+agama           enum("Islam", "Protestant", "Katolik", "Hindu", "Budha", "Konghucu")
+status          enum("Menikah", "Belum Menikah")
+foto            varchar(30)
+jabatan_id      int
+golongan_id     int
+
+
+------------
+tbl_jabatan
+------------
+id                  int
+kode                varchar(6)
+nama                varchar(30)
+gapok               int
+tunjangan_jabatan   int
+
+
+------------
+tbl_golongan
+-------------
+id                      int
+kode                    varchar(6)
+nama                    varchar(30)
+tunjangan_suami_istri   int
+tunjangan_anak          int
+uang_makan              int
+uang_lembur             int
+
+
+---------
+tbl_cuti
+---------
+id                  int
+pegawai_id          int
+start_date          date
+end_date            date
+jumlah              int
+
+
+-----------
+tbl_lembur
+-----------
+id                  int
+pegawai_id          int
+tgl_lembur          date
+jumlah              int
+
+
+---------------
+tbl_penggajihan
+---------------
+id                  int
+date                date
+pegawai_id          int
+masuk               int
+sakit               int
+izin                int
+alpha               int
+lembur              int
+potongan            int
+total_gaji_diterima int
+ket                 varchar(30)
