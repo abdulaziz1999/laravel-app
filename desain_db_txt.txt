@@ -6,7 +6,7 @@ nama            varchar(30)
 jk              enum("L", "P")
 email           varchar(30)
 username        varchar(30)
-password        varchar(225)
+password        varchar(255)
 role_id         int
 
 
