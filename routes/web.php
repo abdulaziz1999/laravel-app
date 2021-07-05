@@ -21,6 +21,14 @@ Route::get('/tes', function () {
     return view('about');
 });
 
+// ROUTE
 Route::resource('/','App\Http\Controllers\HomeController');
+// Route::resource('/','App\Http\Controllers\HomeController');
+Route::resource('/login','App\Http\Controllers\LoginController');
 Route::resource('/home','App\Http\Controllers\HomeController');
 Route::resource('/about','App\Http\Controllers\HomeController',['about']);
+
+
+// FUNC APP
+Route::post('/check_login', 'App\Http\Controllers\LoginController@checkLogin');
+Route::post('/logout', 'App\Http\Controllers\LoginController@logout');

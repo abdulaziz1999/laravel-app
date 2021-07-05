@@ -13,8 +13,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //
-        return view('dashboard');
+        $user_login = session()->has('user_login');
+        if($user_login){
+            $user_login = session()->get('user_login', null);
+        }
+        return view('dashboard', ['user_login' => $user_login]);
     }
 
     /**
