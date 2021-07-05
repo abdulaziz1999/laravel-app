@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 01, 2021 at 09:46 AM
+-- Generation Time: Jul 05, 2021 at 08:59 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.16
 
@@ -131,6 +131,16 @@ CREATE TABLE `tbl_roles` (
   `nama` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `tbl_roles`
+--
+
+INSERT INTO `tbl_roles` (`id`, `nama`) VALUES
+(1, 'Super Admin'),
+(2, 'Admin'),
+(3, 'Operator'),
+(4, 'User');
+
 -- --------------------------------------------------------
 
 --
@@ -146,6 +156,14 @@ CREATE TABLE `tbl_users` (
   `password` varchar(255) NOT NULL,
   `role_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_users`
+--
+
+INSERT INTO `tbl_users` (`id`, `nama`, `jk`, `email`, `username`, `password`, `role_id`) VALUES
+(1, 'Operator ', 'L', 'operator@gmail.com', 'operator', '$2y$10$wJreTiN0FIQLVyaUyi9m9epo11tLxzF8V73RZ5pEpRayoGKYPQGni', 3),
+(2, 'Admin', 'P', 'admin@gmail.com', 'admin', '$2y$10$ek2VXTXstM9Nbv2hElbFLOmguA5ndGXHqp5U.GORjxEnQVLDohSLe', 2);
 
 --
 -- Indexes for dumped tables
@@ -203,6 +221,8 @@ ALTER TABLE `tbl_roles`
 --
 ALTER TABLE `tbl_users`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`),
+  ADD UNIQUE KEY `email` (`email`),
   ADD KEY `role_id` (`role_id`);
 
 --
@@ -249,13 +269,13 @@ ALTER TABLE `tbl_penggajihan`
 -- AUTO_INCREMENT for table `tbl_roles`
 --
 ALTER TABLE `tbl_roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
