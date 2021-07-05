@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>App Kepegawaian - Kelompok 1</title>
     <link rel="stylesheet" href="{{url('assets/css/bootstrap.min.css')}}">
+    @yield('css')
 </head>
 <body>
 <div>
 @include('layouts.header')
+    @yield('slides')
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-9 mt-3">

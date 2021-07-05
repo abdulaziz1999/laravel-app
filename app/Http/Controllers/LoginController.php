@@ -37,7 +37,7 @@ class LoginController extends Controller
         if ($user->count() != 0) {
             if (Hash::check($password, $user[0]->password)) {
                 $request->session()->put('user_login', $user[0]);
-                return redirect('/')->with('msg', 'Login berhasil!');
+                return redirect('/home')->with('msg', 'Login berhasil!');
             } else {
                 return redirect('/login')->with('msg', 'Password anda salah!');
             }
