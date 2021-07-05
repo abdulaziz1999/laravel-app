@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 05, 2021 at 08:59 AM
+-- Generation Time: Jul 05, 2021 at 09:30 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.16
 
@@ -35,6 +35,14 @@ CREATE TABLE `tbl_cuti` (
   `jumlah` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `tbl_cuti`
+--
+
+INSERT INTO `tbl_cuti` (`id`, `pegawai_id`, `start_date`, `end_date`, `jumlah`) VALUES
+(1, 2, '2021-07-02', '2021-07-04', 4),
+(2, 3, '2021-07-01', '2021-07-03', 3);
+
 -- --------------------------------------------------------
 
 --
@@ -51,6 +59,14 @@ CREATE TABLE `tbl_golongan` (
   `uang_lembur` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `tbl_golongan`
+--
+
+INSERT INTO `tbl_golongan` (`id`, `kode`, `nama`, `tunjangan_suami_istri`, `tunjangan_anak`, `uang_makan`, `uang_lembur`) VALUES
+(1, 'A001', 'Golongan Pertama', 100000, 100000, 50000, 50000),
+(2, 'A002', 'Golongan Kedua', 50000, 50000, 25000, 25000);
+
 -- --------------------------------------------------------
 
 --
@@ -65,6 +81,14 @@ CREATE TABLE `tbl_jabatan` (
   `tunjangan_jabatan` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `tbl_jabatan`
+--
+
+INSERT INTO `tbl_jabatan` (`id`, `kode`, `nama`, `gapok`, `tunjangan_jabatan`) VALUES
+(1, 'J001', 'Karyawan', 5000000, 500000),
+(2, 'J002', 'Manager', 12000000, 1000000);
+
 -- --------------------------------------------------------
 
 --
@@ -78,6 +102,14 @@ CREATE TABLE `tbl_lembur` (
   `jumlah` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `tbl_lembur`
+--
+
+INSERT INTO `tbl_lembur` (`id`, `pegawai_id`, `tgl_lembur`, `jumlah`) VALUES
+(1, 2, '2021-07-04', 5),
+(2, 3, '2021-07-03', 4);
+
 -- --------------------------------------------------------
 
 --
@@ -89,7 +121,7 @@ CREATE TABLE `tbl_pegawai` (
   `nik` bigint(20) NOT NULL,
   `nama` varchar(30) NOT NULL,
   `email` varchar(30) NOT NULL,
-  `no_telp` int(11) NOT NULL,
+  `no_telp` bigint(11) NOT NULL,
   `jk` enum('L','P') NOT NULL,
   `tgl_lahir` date NOT NULL,
   `tmp_lahir` varchar(30) NOT NULL,
@@ -99,6 +131,14 @@ CREATE TABLE `tbl_pegawai` (
   `jabatan_id` int(11) NOT NULL,
   `golongan_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_pegawai`
+--
+
+INSERT INTO `tbl_pegawai` (`id`, `nik`, `nama`, `email`, `no_telp`, `jk`, `tgl_lahir`, `tmp_lahir`, `agama`, `status`, `foto`, `jabatan_id`, `golongan_id`) VALUES
+(2, 32034247545877, 'Ardelingga ', 'ardelingga@gmail.com', 811123123321, 'L', '2011-07-11', 'Cirebon', 'Islam', 'Belum Menikah', 'ardelingga.png', 2, 1),
+(3, 32143243545, 'Abdul Aziz', 'abdulaziz@gmail.com', 811321321123, 'L', '2012-07-02', 'Kalbar', 'Islam', 'Menikah', 'abdulaziz.png', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -119,6 +159,14 @@ CREATE TABLE `tbl_penggajihan` (
   `total_gaji_diterima` int(11) NOT NULL,
   `ket` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_penggajihan`
+--
+
+INSERT INTO `tbl_penggajihan` (`id`, `date`, `pegawai_id`, `masuk`, `sakit`, `izin`, `alpha`, `lembur`, `potongan`, `total_gaji_diterima`, `ket`) VALUES
+(1, '2021-07-07', 2, 28, 1, 1, 0, 0, 0, 12000000, '-'),
+(2, '2021-07-11', 3, 29, 1, 0, 0, 2, 100000, 6000000, '-');
 
 -- --------------------------------------------------------
 
@@ -200,6 +248,9 @@ ALTER TABLE `tbl_lembur`
 --
 ALTER TABLE `tbl_pegawai`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `nik` (`nik`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `no_telp` (`no_telp`),
   ADD KEY `jabatan_id` (`jabatan_id`),
   ADD KEY `golongan_id` (`golongan_id`);
 
@@ -233,37 +284,37 @@ ALTER TABLE `tbl_users`
 -- AUTO_INCREMENT for table `tbl_cuti`
 --
 ALTER TABLE `tbl_cuti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_golongan`
 --
 ALTER TABLE `tbl_golongan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_jabatan`
 --
 ALTER TABLE `tbl_jabatan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_lembur`
 --
 ALTER TABLE `tbl_lembur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_pegawai`
 --
 ALTER TABLE `tbl_pegawai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_penggajihan`
 --
 ALTER TABLE `tbl_penggajihan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_roles`
