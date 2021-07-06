@@ -26,7 +26,7 @@ class PegawaiController extends Controller
             ->select('tbl_pegawai.*', 'tbl_golongan.nama AS golongan', 'tbl_jabatan.nama AS jabatan')
             ->get();
 
-        return view('pegawai', ['user_login' => $user_login, 'pegawai' => $pegawai]);
+        return view('pegawai.pegawai', ['user_login' => $user_login, 'pegawai' => $pegawai]);
     }
 
     public function add_page()
@@ -46,7 +46,7 @@ class PegawaiController extends Controller
             ->select('id', 'kode', 'nama')
             ->get();
 
-        return view('add_pegawai', ['user_login' => $user_login, 'data' => $data]);
+        return view('pegawai.add_pegawai', ['user_login' => $user_login, 'data' => $data]);
         // return json_encode($data);
     }
 
@@ -76,7 +76,7 @@ class PegawaiController extends Controller
 
 
 
-        return view('edit_pegawai', ['user_login' => $user_login, 'data' => $data, 'pegawai' => $pegawai]);
+        return view('pegawai.edit_pegawai', ['user_login' => $user_login, 'data' => $data, 'pegawai' => $pegawai]);
         // return json_encode($data);
     }
 

@@ -18,6 +18,9 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{url('pegawai')}}">Pegawai</a>
+                            <a class="dropdown-item" href="{{url('jabatan')}}">Jabatan</a>
+                            <a class="dropdown-item" href="{{url('golongan')}}">Golongan</a>
+                            <a class="dropdown-item" href="{{url('penggajihan')}}">Penggajihan</a>
                         </div>
                     </li>
                     <li class="nav-item">
