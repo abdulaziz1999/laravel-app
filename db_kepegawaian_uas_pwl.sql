@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 05, 2021 at 09:30 AM
+-- Generation Time: Jul 06, 2021 at 02:41 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.16
 
@@ -20,28 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_kepegawaian_uas_pwl`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_cuti`
---
-
-CREATE TABLE `tbl_cuti` (
-  `id` int(11) NOT NULL,
-  `pegawai_id` int(11) NOT NULL,
-  `start_date` date NOT NULL,
-  `end_date` date NOT NULL,
-  `jumlah` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_cuti`
---
-
-INSERT INTO `tbl_cuti` (`id`, `pegawai_id`, `start_date`, `end_date`, `jumlah`) VALUES
-(1, 2, '2021-07-02', '2021-07-04', 4),
-(2, 3, '2021-07-01', '2021-07-03', 3);
 
 -- --------------------------------------------------------
 
@@ -86,29 +64,8 @@ CREATE TABLE `tbl_jabatan` (
 --
 
 INSERT INTO `tbl_jabatan` (`id`, `kode`, `nama`, `gapok`, `tunjangan_jabatan`) VALUES
-(1, 'J001', 'Karyawan', 5000000, 500000),
-(2, 'J002', 'Manager', 12000000, 1000000);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_lembur`
---
-
-CREATE TABLE `tbl_lembur` (
-  `id` int(11) NOT NULL,
-  `pegawai_id` int(11) NOT NULL,
-  `tgl_lembur` date NOT NULL,
-  `jumlah` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_lembur`
---
-
-INSERT INTO `tbl_lembur` (`id`, `pegawai_id`, `tgl_lembur`, `jumlah`) VALUES
-(1, 2, '2021-07-04', 5),
-(2, 3, '2021-07-03', 4);
+(1, 'J0012', 'Karyawan', 5000000, 500000),
+(2, 'J002', 'Manager', 5000000, 500000);
 
 -- --------------------------------------------------------
 
@@ -137,8 +94,7 @@ CREATE TABLE `tbl_pegawai` (
 --
 
 INSERT INTO `tbl_pegawai` (`id`, `nik`, `nama`, `email`, `no_telp`, `jk`, `tgl_lahir`, `tmp_lahir`, `agama`, `status`, `foto`, `jabatan_id`, `golongan_id`) VALUES
-(2, 32034247545877, 'Ardelingga ', 'ardelingga@gmail.com', 811123123321, 'L', '2011-07-11', 'Cirebon', 'Islam', 'Belum Menikah', 'ardelingga.png', 2, 1),
-(3, 32143243545, 'Abdul Aziz', 'abdulaziz@gmail.com', 811321321123, 'L', '2012-07-02', 'Kalbar', 'Islam', 'Menikah', 'abdulaziz.png', 1, 2);
+(5, 32134543535, 'Ardelingga', 'ardelingga@gmail.com', 811123123321, 'L', '2021-07-08', 'Jakarta', 'Islam', 'Menikah', 'ardelingga.png', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -165,8 +121,7 @@ CREATE TABLE `tbl_penggajihan` (
 --
 
 INSERT INTO `tbl_penggajihan` (`id`, `date`, `pegawai_id`, `masuk`, `sakit`, `izin`, `alpha`, `lembur`, `potongan`, `total_gaji_diterima`, `ket`) VALUES
-(1, '2021-07-07', 2, 28, 1, 1, 0, 0, 0, 12000000, '-'),
-(2, '2021-07-11', 3, 29, 1, 0, 0, 2, 100000, 6000000, '-');
+(3, '2021-07-04', 5, 29, 1, 0, 0, 0, 0, 10000000, '-');
 
 -- --------------------------------------------------------
 
@@ -218,13 +173,6 @@ INSERT INTO `tbl_users` (`id`, `nama`, `jk`, `email`, `username`, `password`, `r
 --
 
 --
--- Indexes for table `tbl_cuti`
---
-ALTER TABLE `tbl_cuti`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `tbl_cuti_ibfk_1` (`pegawai_id`);
-
---
 -- Indexes for table `tbl_golongan`
 --
 ALTER TABLE `tbl_golongan`
@@ -235,13 +183,6 @@ ALTER TABLE `tbl_golongan`
 --
 ALTER TABLE `tbl_jabatan`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tbl_lembur`
---
-ALTER TABLE `tbl_lembur`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `pegawai_id` (`pegawai_id`);
 
 --
 -- Indexes for table `tbl_pegawai`
@@ -281,40 +222,28 @@ ALTER TABLE `tbl_users`
 --
 
 --
--- AUTO_INCREMENT for table `tbl_cuti`
---
-ALTER TABLE `tbl_cuti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT for table `tbl_golongan`
 --
 ALTER TABLE `tbl_golongan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_jabatan`
 --
 ALTER TABLE `tbl_jabatan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `tbl_lembur`
---
-ALTER TABLE `tbl_lembur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_pegawai`
 --
 ALTER TABLE `tbl_pegawai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_penggajihan`
 --
 ALTER TABLE `tbl_penggajihan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_roles`
@@ -331,18 +260,6 @@ ALTER TABLE `tbl_users`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `tbl_cuti`
---
-ALTER TABLE `tbl_cuti`
-  ADD CONSTRAINT `tbl_cuti_ibfk_1` FOREIGN KEY (`pegawai_id`) REFERENCES `tbl_pegawai` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `tbl_lembur`
---
-ALTER TABLE `tbl_lembur`
-  ADD CONSTRAINT `tbl_lembur_ibfk_1` FOREIGN KEY (`pegawai_id`) REFERENCES `tbl_pegawai` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tbl_pegawai`
