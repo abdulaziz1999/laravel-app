@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-
+use PDF;
 class PegawaiController extends Controller
 {
     /**
@@ -181,5 +181,19 @@ class PegawaiController extends Controller
 
 
         // return view('add_pegawai');
+    }
+
+    public function pegawaiPDF()
+    {
+        
+        $pegawai = DB::table('tbl_pegawai')
+            ->join('tbl_golongan', 'tbl_pegawai.golongan_id', '=', 'tbl_golongan.id')
+            ->join('tbl_jabatan', 'tbl_pegawai.jabatan_id', '=', 'tbl_jabatan.id')
+            ->select('tbl_pegawai.*', 'tbl_golongan.nama AS golongan', 'tbl_jabatan.nama AS jabatan')
+            ->get();
+          
+        $pdf = PDF::loadView('pegawai.pegawaiPdf', ['pegawai' => $pegawai]);
+    
+        return $pdf->download('Pegawai.pdf');
     }
 }

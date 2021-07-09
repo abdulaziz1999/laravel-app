@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-
+use PDF;
 class JabatanController extends Controller
 {
     /**
@@ -97,5 +97,17 @@ class JabatanController extends Controller
 
 
         // return view('add_pegawai');
+    }
+
+    public function jabatanPDF()
+    {
+        
+        $jabatan = DB::table('tbl_jabatan')
+            ->select('*')
+            ->get();
+          
+        $pdf = PDF::loadView('jabatan.jabatanPdf', ['jabatan' => $jabatan]);
+    
+        return $pdf->download('Jabatan.pdf');
     }
 }

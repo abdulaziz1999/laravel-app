@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-
+use PDF;
 class PenggajihanController extends Controller
 {
     /**
@@ -126,5 +126,18 @@ class PenggajihanController extends Controller
 
 
         // return view('add_pegawai');
+    }
+
+    public function gajiPDF()
+    {
+        
+        $penggajihan = DB::table('tbl_penggajihan')
+            ->join('tbl_pegawai', 'tbl_penggajihan.pegawai_id', '=', 'tbl_pegawai.id')
+            ->select('tbl_penggajihan.*', 'tbl_pegawai.nama AS pegawai')
+            ->get();
+          
+        $pdf = PDF::loadView('penggajihan.penggajihanPdf', ['penggajihan' => $penggajihan]);
+    
+        return $pdf->download('Penggajihan.pdf');
     }
 }

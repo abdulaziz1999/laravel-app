@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\JabatanController;
+use App\Http\Controllers\GolonganController;
+use App\Http\Controllers\PenggajihanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,13 +20,12 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/tes', function () {
+Route::get('/about', function () {
     return view('about');
 });
 
 // ROUTE
 Route::resource('/','App\Http\Controllers\HomeController');
-// Route::resource('/','App\Http\Controllers\HomeController');
 Route::resource('/login','App\Http\Controllers\LoginController');
 Route::resource('/home','App\Http\Controllers\HomeController');
 Route::resource('/pegawai','App\Http\Controllers\PegawaiController');
@@ -39,7 +41,10 @@ Route::resource('/penggajihan','App\Http\Controllers\PenggajihanController');
 Route::get('/tambah_penggajihan','App\Http\Controllers\PenggajihanController@add_page');
 Route::get('/edit_penggajihan/{id_penggajihan}','App\Http\Controllers\PenggajihanController@edit_page');
 Route::resource('/about','App\Http\Controllers\HomeController',['about']);
-
+Route::get('pegawaipdf', [PegawaiController::class, 'pegawaiPDF']);
+Route::get('jabatanpdf', [JabatanController::class, 'jabatanPDF']);
+Route::get('golonganpdf', [GolonganController::class, 'golonganPDF']);
+Route::get('gajipdf', [PenggajihanController::class, 'gajiPDF']);
 
 // FUNC APP
 Route::post('/check_login', 'App\Http\Controllers\LoginController@checkLogin');
