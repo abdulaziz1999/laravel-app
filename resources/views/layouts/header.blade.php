@@ -26,23 +26,43 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('home/about')}}">About Us</a>
                     </li>
-
                 </ul>
-                <form class="form-inline my-2 my-lg-0" action="{{ url('/logout') }}" method="POST">
-                    @csrf
-                    @if($user_login == null){
-                    <a href="{{url('login')}}" class="btn btn-success my-2 my-sm-0 mr-5" type="submit">Login</a>
-                    @else
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-success dropdown-toggle mr-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{$user_login->nama}}
-                        </button>
-                        <div class="dropdown-menu">
-                            <button type="submit" class="dropdown-item">Logout</button>
-                        </div>
-                    </div>
-                    @endif
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    @guest
+                            @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                </li>
+                            @endif
 
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
+                </ul>
+
+                <form class="form-inline my-2 my-lg-0" action="#" method="POST">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>

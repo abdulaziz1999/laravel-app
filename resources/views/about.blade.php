@@ -1,6 +1,6 @@
 @extends('layouts.index')
 @section('content')
-<div class="accordion" id="accordionExample">
+<div class="accordion" id="accordionExample" style="margin-top: 80px;">
   <div class="card">
     <div class="card-header" id="headingOne">
       <h2 class="mb-0">
