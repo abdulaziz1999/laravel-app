@@ -23,6 +23,7 @@
   <div class="card-body">
     <h3 class="display-5">Data Golongan</h3>
     <a href="{{url('tambah_golongan')}}" class="btn btn-success" type="submit">Tambah Data</a>
+    <a href="{{url('golonganpdf')}}" class="btn btn-danger" >Export Pdf</a>
     <table class="table table-striped mt-3">
       <thead>
         <tr>
